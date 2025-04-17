@@ -16,6 +16,10 @@ def show_interface():
     *   Instagram: https://www.instagram.com/dev.cherki   *
     *******************************************************
     ''')
+
+# عرض الواجهة
+show_interface()
+
 # ANSI colors
 GREEN = "\033[92m"
 YELLOW = "\033[93m"
