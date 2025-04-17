@@ -1,45 +1,58 @@
 import random
 import string
 import os
-from colorama import Fore, init
+from colorama import Fore, Style, init
 
-# Initialize colorama for terminal color support
+# Initialize colorama
 init(autoreset=True)
 
-# Function to generate a random email
+# واجهة المستخدم
+def show_interface():
+    print(Fore.GREEN + Style.BRIGHT + '''
+    *******************************************************
+    *               Random Email Generator                *
+    *             Developed by: Dev Cherki                *
+    *                                                     *
+    *   FACEBOOK : https://www.facebook.com/dev.cherki    *
+    *   INSTAGRAM: https://www.instagram.com/dev.cherki   *
+    *******************************************************
+    ''')
+
+# طباعة ملونة
+def print_colored(text, color):
+    print(color + text + Style.RESET_ALL)
+
+# إنشاء إيميل عشوائي
 def generate_email(name, domain):
-    # Generate a random string for uniqueness
     random_string = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
-    email = f"{name.lower()}{random_string}@{domain.lower()}"
-    return email
+    return f"{name.lower()}{random_string}@{domain.lower()}"
 
-# Main function to create emails
+# إنشاء الإيميلات وحفظها في ملف
 def create_emails():
-    # Collect user input
-    print(Fore.CYAN + "Hello! Let's help you create emails.")
-    name = input(Fore.YELLOW + "Enter the person's name (e.g., Tom or Ahmed): ")
-    domain = input(Fore.YELLOW + "Enter the domain (e.g., gmail.com or yahoo.com): ")
-    count = int(input(Fore.YELLOW + "How many emails would you like to create? "))
-    save_path = input(Fore.YELLOW + "Enter the file path to save the emails (e.g., C:/emails.txt): ")
+    show_interface()
 
-    # If the user only entered the file name (no directory), use the current directory
+    name = input(Fore.CYAN + "Enter the person's name (e.g., Tom or Ahmed): " + Style.RESET_ALL).strip()
+    domain = input(Fore.CYAN + "Enter the domain (e.g., gmail.com or yahoo.com): " + Style.RESET_ALL).strip()
+    count = int(input(Fore.CYAN + "How many emails would you like to create? " + Style.RESET_ALL).strip())
+    save_path = input(Fore.CYAN + "Enter the file path to save the emails (e.g., emails.txt): " + Style.RESET_ALL).strip()
+
+    # استخدام المسار الحالي إذا لم يتم تحديد مجلد
     if not os.path.dirname(save_path):
         save_path = os.path.join(os.getcwd(), save_path)
 
-    # Check if the directory exists, if not, create it
     directory = os.path.dirname(save_path)
     if not os.path.exists(directory):
-        print(Fore.YELLOW + "The directory doesn't exist. Creating it now...")
+        print_colored("The directory doesn't exist. Creating it now...", Fore.YELLOW)
         os.makedirs(directory)
 
-    # Generate emails and save them to the file
+    # إنشاء الإيميلات
     with open(save_path, 'w') as f:
         for _ in range(count):
             email = generate_email(name, domain)
             f.write(email + '\n')
 
-    print(Fore.GREEN + f"{count} emails have been created and saved to {save_path}.")
+    print_colored(f"{count} emails have been created and saved to: {save_path}", Fore.GREEN)
 
-# Run the function to create emails
+# تشغيل البرنامج
 if __name__ == "__main__":
     create_emails()
