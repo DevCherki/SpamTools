@@ -1,5 +1,21 @@
 import random
+from colorama import Fore, Style, init
 
+# تهيئة colorama لتنسيق الألوان
+init(autoreset=True)
+
+# واجهة المستخدم
+def show_interface():
+    print(Fore.GREEN + Style.BRIGHT + '''
+    *******************************************************
+    *             Spam-SMS Tool                           *
+    *         Developed by: Dev Cherki                    *
+    *                                                     *
+    *   Contact Me:                                       *
+    *   Facebook: https://www.facebook.com/dev.cherki     *
+    *   Instagram: https://www.instagram.com/dev.cherki   *
+    *******************************************************
+    ''')
 # ANSI colors
 GREEN = "\033[92m"
 YELLOW = "\033[93m"
