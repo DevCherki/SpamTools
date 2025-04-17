@@ -14,7 +14,7 @@ def show_interface():
     *                                                     *
     *   Contact Me:                                       *
     *   Facebook: https://www.facebook.com/dev.cherki     *
-    *   Instagram: https://www.instagram.com/dev_cherki   *
+    *   Instagram: https://www.instagram.com/dev.cherki   *
     *******************************************************
     ''')
 
